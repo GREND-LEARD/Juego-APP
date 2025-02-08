@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Memory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>EMOJI MEMORY 🎮</h1>
+        <div class="stats">
+            <div>Tiempo: <span id="time">00:00</span></div>
+            <div>Movimientos: <span id="moves">0</span></div>
+        </div>
+        <div class="grid" id="grid"></div>
+        <button id="reset">Reiniciar Juego</button>
+    </div>
+
+    <!-- Modal de Victoria -->
+    <div id="winModal" class="modal">
+        <div class="modal-content">
+            <h2>¡GANASTE! 🏆</h2>
+            <p>Tiempo: <span id="winTime">00:00</span></p>
+            <p>Movimientos: <span id="winMoves">0</span></p>
+            <button id="playAgain">Jugar de Nuevo</button>
+        </div>
+    </div>
+        <!-- ... (antes del script) ... -->
+<audio id="backgroundMusic" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="audio-controls">
+    <button id="musicButton">🎵 Activar Música</button>
+</div>
+
+<script src="script.js"></script>
+    <script src="script.js"></script>
+    
+
+</body>
+</html>
