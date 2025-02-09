@@ -126,3 +126,12 @@ musicButton.addEventListener("click", () => {
     }
     isMusicOn = !isMusicOn;
 });
+
+// Modifica el evento click por touchstart en las cartas
+card.addEventListener("touchstart", (e) => {
+    e.preventDefault(); // Evitar zoom accidental
+    flipCard(card, index);
+});
+
+// Mantén también el click para desktop
+card.addEventListener("click", () => flipCard(card, index));
