@@ -23,11 +23,11 @@ function createBoard() {
     
     cards.forEach((emoji, index) => {
         const card = document.createElement("div");
-        card.className = "card";
+        card.className = "card w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-pink-500 rounded-lg flex items-center justify-center text-4xl cursor-pointer";
         card.innerHTML = `
-            <div class="card-inner">
-                <div class="card-front">${emoji}</div>
-                <div class="card-back"></div>
+            <div class="card-inner w-full h-full relative">
+                <div class="card-front absolute w-full h-full flex items-center justify-center bg-pink-500 rounded-lg">${emoji}</div>
+                <div class="card-back absolute w-full h-full flex items-center justify-center bg-purple-600 rounded-lg"></div>
             </div>
         `;
         card.addEventListener("click", () => flipCard(card, index));
@@ -83,7 +83,7 @@ function updateTimer() {
 function showWinModal() {
     winTime.textContent = timeElement.textContent;
     winMoves.textContent = moves;
-    winModal.style.display = "flex";
+    winModal.classList.remove("hidden");
 }
 
 // Reiniciar juego
@@ -95,7 +95,7 @@ function resetGame() {
     gameActive = true;
     movesElement.textContent = "0";
     timeElement.textContent = "00:00";
-    winModal.style.display = "none";
+    winModal.classList.add("hidden");
     timer = setInterval(updateTimer, 1000);
     createBoard();
 }
@@ -108,7 +108,7 @@ playAgainButton.addEventListener("click", resetGame);
 timer = setInterval(updateTimer, 1000);
 createBoard();
 
-// Agrega esto al inicio del script
+// Elementos de audio
 const backgroundMusic = document.getElementById("backgroundMusic");
 const musicButton = document.getElementById("musicButton");
 let isMusicOn = false;
@@ -127,11 +127,4 @@ musicButton.addEventListener("click", () => {
     isMusicOn = !isMusicOn;
 });
 
-// Modifica el evento click por touchstart en las cartas
-card.addEventListener("touchstart", (e) => {
-    e.preventDefault(); // Evitar zoom accidental
-    flipCard(card, index);
-});
-
-// Mantén también el click para desktop
-card.addEventListener("click", () => flipCard(card, index));
+// ... (resto del código del juego sigue igual) ...

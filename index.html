@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Agrega esto en el head -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emoji Memory</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Animación de volteo */
+        .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            backface-visibility: hidden;
+        }
+        .card-front {
+            transform: rotateY(180deg);
+        }
+    </style>
 </head>
-<body>
-    <div class="game-container">
-        <h1>EMOJI MEMORY 🎮</h1>
-        <div class="stats">
-            <div>Tiempo: <span id="time">00:00</span></div>
-            <div>Movimientos: <span id="moves">0</span></div>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen flex items-center justify-center text-white">
+    <div class="text-center">
+        <h1 class="text-4xl font-bold mb-6 text-pink-500">EMOJI MEMORY 🧠</h1>
+        <div class="flex justify-around mb-6 bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div class="text-lg">Tiempo: <span id="time" class="font-bold">00:00</span></div>
+            <div class="text-lg">Movimientos: <span id="moves" class="font-bold">0</span></div>
         </div>
-        <div class="grid" id="grid"></div>
-        <button id="reset">Reiniciar Juego</button>
+        <div id="grid" class="grid grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 max-w-md mx-auto p-4">
+            <!-- Tarjetas se generan dinámicamente aquí -->
+        </div>
+        <button id="reset" class="mt-6 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full transition-transform transform hover:scale-105">
+            Reiniciar Juego
+        </button>
     </div>
 
     <!-- Modal de Victoria -->
-    <div id="winModal" class="modal">
-        <div class="modal-content">
-            <h2>¡GANASTE! 🏆</h2>
-            <p>Tiempo: <span id="winTime">00:00</span></p>
-            <p>Movimientos: <span id="winMoves">0</span></p>
-            <button id="playAgain">Jugar de Nuevo</button>
+    <div id="winModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center">
+        <div class="bg-gradient-to-br from-pink-500 to-purple-600 p-8 rounded-lg text-center">
+            <h2 class="text-3xl font-bold mb-4">¡GANASTE! 🏆</h2>
+            <p class="text-lg">Tiempo: <span id="winTime">00:00</span></p>
+            <p class="text-lg">Movimientos: <span id="winMoves">0</span></p>
+            <button id="playAgain" class="mt-4 bg-white text-pink-600 font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition-transform transform hover:scale-105">
+                Jugar de Nuevo
+            </button>
         </div>
     </div>
-        <!-- ... (antes del script) ... -->
-<audio id="backgroundMusic" loop>
-    <source src="musica.mp3" type="audio/mpeg" />
-</audio>
 
-<div class="audio-controls">
-    <button id="musicButton">🎵 Activar Música</button>
-</div>
+    <!-- Botón de música -->
+    <button id="musicButton" class="fixed top-4 right-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full transition-transform transform hover:scale-105">
+        🎵 Activar Música
+    </button>
 
-<script src="script.js"></script>
+    <!-- Audio -->
+    <audio id="backgroundMusic" loop>
+        <source src="musica.mp3" type="audio/mpeg" />
+        Tu navegador no soporta audio.
+    </audio>
+
     <script src="script.js"></script>
-    
-
 </body>
 </html>
